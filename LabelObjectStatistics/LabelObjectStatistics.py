@@ -2,12 +2,13 @@ import unittest
 from __main__ import vtk, qt, ctk, slicer
 import SimpleITK as sitk
 import sitkUtils
+from functools import reduce
 
 #
 # LabelObjectStatistics
 #
 
-class LabelObjectStatistics:
+class LabelObjectStatistics(object):
   def __init__(self, parent):
     import string
     parent.title = "Label Object Statistics"
@@ -25,7 +26,7 @@ Use this module to calculate counts and volumes for different labels of a label 
 # qSlicerPythonModuleExampleWidget
 #
 
-class LabelObjectStatisticsWidget:
+class LabelObjectStatisticsWidget(object):
   def __init__(self, parent=None):
     if not parent:
       self.parent = slicer.qMRMLWidget()
@@ -182,7 +183,7 @@ class LabelObjectStatisticsWidget:
     if not valueToPlot is None:
       self.logic.createStatsChart(self.labelNode,valueToPlot,ignoreZero)
     else:
-      print "Selected item is unexpectedly None!"
+      print("Selected item is unexpectedly None!")
 
   def onSave(self):
     """save the label statistics
@@ -248,7 +249,7 @@ class LabelObjectStatisticsWidget:
     self.chartOption.clear()
     self.chartOption.addItems(self.logic.keys)
 
-class LabelObjectStatisticsLogic:
+class LabelObjectStatisticsLogic(object):
   """Implement the logic to calculate label statistics.
   Nodes are passed in as arguments.
   Results are stored as 'statistics' instance variable.
@@ -375,7 +376,7 @@ class LabelObjectStatisticsLogic:
       tuples -= 1
     array.SetNumberOfTuples(tuples)
     tuple = 0
-    for i in xrange(samples):
+    for i in range(samples):
         index = self.labelStats["Labels"][i]
         if not (ignoreZero and index == 0):
           array.SetComponent(tuple, 0, index)
@@ -507,7 +508,7 @@ class LabelObjectStatisticsTest(unittest.TestCase):
     m.moduleSelector().selectModule('LabelObjectStatistics')
 
 
-    print dir(slicer.modules)
+    print(dir(slicer.modules))
 
     testWidget = slicer.modules.LabelObjectStatisticsWidget
 
@@ -533,7 +534,7 @@ class LabelObjectStatisticsTest(unittest.TestCase):
 
 
     logic = LabelObjectStatisticsLogic( mrHead, mrHeadLabel )
-    print logic.keys
-    print logic.labelStats
+    print(logic.keys)
+    print(logic.labelStats)
 
     logic.saveStats("test_LabelObjectStatisticsLogic.csv")

@@ -297,7 +297,7 @@ pet = EditorLib.BinaryWatershedEffectTool(sw)
 # BinaryWatershedEffect
 #
 
-class BinaryWatershedEffect:
+class BinaryWatershedEffect(object):
   """
   This class is the 'hook' for slicer to detect and recognize the extension
   as a loadable scripted module

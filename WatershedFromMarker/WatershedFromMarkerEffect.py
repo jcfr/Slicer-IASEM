@@ -267,7 +267,7 @@ pet = EditorLib.WatershedFromMarkerEffectTool(sw)
 # WatershedFromMarkerEffect
 #
 
-class WatershedFromMarkerEffect:
+class WatershedFromMarkerEffect(object):
   """
   This class is the 'hook' for slicer to detect and recognize the extension
   as a loadable scripted module
@@ -300,7 +300,7 @@ class WatershedFromMarkerEffect:
 # WatershedFromMarkerEffectWidget
 #
 
-class WatershedFromMarkerEffectWidget:
+class WatershedFromMarkerEffectWidget(object):
   def __init__(self, parent = None):
     self.parent = parent
 

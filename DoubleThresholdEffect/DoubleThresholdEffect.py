@@ -337,7 +337,7 @@ class DoubleThresholdEffectTool(Effect.EffectTool):
     self.lut.SetTableRange( 0, 2 )
     self.lut.SetTableValue( 0,  0, 0, 0,  0 )
     r,g,b,a = color
-    self.lut.SetTableValue( 1,  r, g, b,  a/3 )
+    self.lut.SetTableValue( 1,  r, g, b,  int(a/3) )
     self.lut.SetTableValue( 2,  r, g, b,  a )
 
     if not self.map:
@@ -434,7 +434,7 @@ pet = EditorLib.DoubleThresholdEffectTool(sw)
 # DoubleThresholdEffect
 #
 
-class DoubleThresholdEffect:
+class DoubleThresholdEffect(object):
   """
   This class is the 'hook' for slicer to detect and recognize the extension
   as a loadable scripted module
@@ -473,7 +473,7 @@ class DoubleThresholdEffect:
 # DoubleThresholdEffectWidget
 #
 
-class DoubleThresholdEffectWidget:
+class DoubleThresholdEffectWidget(object):
   def __init__(self, parent = None):
     self.parent = parent
     
